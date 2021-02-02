@@ -10,7 +10,7 @@ var people = [];
 function setup() {
   createCanvas(canwidth, canheight);
 
-  socket = io.connect('http://localhost:3000');
+  socket = io.connect('https://crath.herokuapp.com/');
   socket.on('newPos', newOtherPlayer);
 }
 function newOtherPlayer(data){
