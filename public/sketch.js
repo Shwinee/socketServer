@@ -53,7 +53,7 @@ function setup() {
     player.name = inp_name.value();
   });
 
-  socket = io.connect('http://localhost:3000/');
+  socket = io.connect('https://crath.herokuapp.com/');
   socket.on('newPos', newOtherPlayer);
   socket.on('itemChange', itemChange);
 }
