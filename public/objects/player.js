@@ -2,7 +2,7 @@ function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-function player(){
+function player(color){
   this.x = canwidth / 2;
   this.y = 300;
 
@@ -10,28 +10,40 @@ function player(){
 
   this.hp = 100;
 
-  this.pickuprange = 40;
+  this.thirst = 50;
+  this.hunger = 50;
 
   this.size = 32;
-
   this.speed = 2;
-
-  this.defence = 0;
 
   this.inventory = [];
   this.maxinven = 4;
 
   //HIT BOX
-  this.hitboxX = ["top left", "top right", "bottom left", "bottom right"];
-  this.hitboxY = ["top left", "top right", "bottom left", "bottom right"];
-
   this.direction = "left";
 
-  this.effects = [];
+  this.color = color;
+
+  this.name;
 
   this.show = function(){
-    fill(0, 255, 0);
-    rect(player.x, player.y, player.size, player.size);
+    if (this.color){
+      if (this.color == 'red'){
+        image(redSprite, player.x, player.y, player.size, player.size);
+      }
+      if (this.color == 'blue'){
+        image(blueSprite, player.x, player.y, player.size, player.size);
+      }
+      if (this.color == 'white'){
+        image(whiteSprite, player.x, player.y, player.size, player.size);
+      }
+      if (this.color == 'black'){
+        image(blackSprite, player.x, player.y, player.size, player.size);
+      }
+    }else{
+      fill(0, 255, 0);
+      rect(player.x, player.y, player.size, player.size);
+    }
   }
 
   this.neweffect = function(effect){

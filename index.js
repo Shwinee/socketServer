@@ -17,9 +17,14 @@ function newConnection(socket) {
   console.log('new player: '+socket.id);
 
   socket.on('newPos', playerPos);
+  socket.on('itemChange', itemChange);
 
   function playerPos(data){
     socket.broadcast.emit('newPos', data);
+  }
+
+  function itemChange(data){
+    socket.broadcast.emit('itemChange', data);
     console.log(data);
   }
 }
