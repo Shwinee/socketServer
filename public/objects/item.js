@@ -20,11 +20,15 @@ function item(x, y, name, callback, id){
         image(hilight, this.x-2, this.y-2, 20, 20);
         //if e pick up
         if (keyIsDown(69)) {
-          this.callback();
-          player.inventory.push(worldData[0][this.id]);
-          worldData[0].splice(this.id, 1);
-          //send new world data
-          sendWorldData();
+          this.callback(); // Speical function for Speical items
+          if (player.inventory.length <= player.maxinven){
+            worldData[0].splice(this.id, 1);
+
+            player.inventory.push(this);
+            //send new world data
+            sendItemData('remove', this.id);
+          }
+
         }
       }
     }

@@ -19,6 +19,8 @@ function player(color){
   this.inventory = [];
   this.maxinven = 4;
 
+  this.hilight = [false, false, false, false];
+
   //HIT BOX
   this.direction = "left";
 
@@ -52,5 +54,27 @@ function player(color){
 
   this.dmg = function(dmgtaken){
     this.hp = this.hp - dmgtaken;
+  }
+
+  this.inventory_drop = function(){
+    for (var i = 0; i < this.hilight.length; i++) {
+      if (this.hilight[i] == true){
+        if (this.inventory[i]){
+          //drop this item
+          this.inventory[i].x = player.x;
+          this.inventory[i].y = player.y;
+
+          for (var x = 0; x < worldData[0].length; x++) {
+            worldData[0][x].id = x;
+          }
+          this.inventory[i].id = worldData[0].length;
+          worldData[0].push(this.inventory[i]);
+          sendItemData('add', undefined, this.inventory[i]);
+
+
+          this.inventory.splice(i, 1);
+        }
+      }
+    }
   }
 }
